@@ -12,7 +12,7 @@ const widgetRoots = document.querySelectorAll('.widget_react_conch');
 widgetRoots.forEach(Div => {
   ReactDOM.createRoot(Div).render(
   <React.StrictMode>
-        <App kbve_dom_element={Div} key={Div} />
+        <App kbve={Div} key={Div} />
   </React.StrictMode>
   );
 });
