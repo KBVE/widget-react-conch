@@ -2,9 +2,26 @@ import React, { useEffect, useState } from "react";
 // import * as ReactDOM from 'react-dom';
 import useSound from "use-sound";
 
+
 const Conch = ({ conchMsg }) => {
-  //const [playYes] = useSound("./yes.ogg"); // useSound("https://kbve.com/assets/audio/yes.ogg");
-  //const [playNo] = useSound("./no.mp3"); // useSound("https://kbve.com/assets/audio/no.ogg");
+  const [playYes] = useSound("https://kbve.com/assets/audio/yes.ogg"); // useSound("https://kbve.com/assets/audio/yes.ogg");
+  const [playNo] = useSound("https://kbve.com/assets/audio/no.ogg"); // useSound("https://kbve.com/assets/audio/no.ogg");
+  
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+  function _ask(){
+      let magic = getRandomInt(2);
+      if(magic == 1)
+      {
+      playYes();
+      }
+      if(magic == 0)
+      {
+        playNo();
+      }
+  }
 
   function _renderCard() {
     return (
@@ -38,6 +55,7 @@ const Conch = ({ conchMsg }) => {
                   src="https://kbve.com/assets/img/conch/conch_shell.png"
                   className="hover:animate-pulse hover:scale-110 hover:cursor-grab hover:grayscale"
                   alt="Magic Shell"
+                  onClick={_ask}
                 />
               </div>
               <div className="flex flex-col w-full">
