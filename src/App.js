@@ -2,7 +2,7 @@
 //*       [IMPORT]
 import React, { useEffect, useState } from "react";
 import Conch from "./Conch.js";
-import {API} from "./API.js";
+import API from "./API.js";
 
 
 function Skeleton() {
@@ -21,17 +21,8 @@ function Skeleton() {
 }
 
 const getUser = async () => {
-  const response = await API.query({
-    query: `query {
-          accountGet {
-              _id
-              name
-              emailVerification
-              email
-          }
-      }`,
-  });
-  return response.data.accountGet;
+  const response = await API.getAccount();
+  return response.data;
 };
 
 function App({ kbve }) {
