@@ -20,19 +20,22 @@ import Link from "@mui/material/Link";
 //*       @mui Theme
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 //import useMediaQuery from '@mui/material/useMediaQuery';
-
 //*       Carousel
 import Carousel from "./Carousel";
+//*       Conch
+import Conch from "./Conch";
 
 function App({ kbve_dom_element }) {
+
   const _limit = kbve_dom_element.getAttribute("data-limit");
   const _dataJSON = kbve_dom_element.getAttribute("data-json");
+  
   const [loading, setLoading] = useState();
   const [error, setError] = useState("");
   const [data, setData] = useState([]);
   //const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const prefersDarkMode = true;
-
+ 
   const theme = React.useMemo(
     () =>
       createTheme({
