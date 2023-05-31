@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import useSound from "use-sound";
 
 const Conch = ({ conchMsg }) => {
-  const [playYes] = useSound("./yes.ogg"); // useSound("https://kbve.com/assets/audio/yes.ogg");
-  const [playNo] = useSound("./no.mp3"); // useSound("https://kbve.com/assets/audio/no.ogg");
+  //const [playYes] = useSound("./yes.ogg"); // useSound("https://kbve.com/assets/audio/yes.ogg");
+  //const [playNo] = useSound("./no.mp3"); // useSound("https://kbve.com/assets/audio/no.ogg");
 
   function _renderCard() {
     return (
