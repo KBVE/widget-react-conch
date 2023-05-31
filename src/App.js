@@ -21,8 +21,16 @@ function Skeleton() {
 }
 
 const getUser = async () => {
+  let __data = ""
+  try {
   const response = await API.getAccount();
-  return response.data;
+  __data = response;
+  }
+  catch (e)
+  {
+    console.log(e);
+  }
+  return __data;
 };
 
 function App({ kbve }) {

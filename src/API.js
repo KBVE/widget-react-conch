@@ -11,7 +11,7 @@ import { Client , Databases, Account } from "appwrite";
       }
       let client = new Client();
       client
-      .setEndpoint("https://API.kbve.com/v1")
+      .setEndpoint("https://ap.kbve.com/v1")
       .setProject("6436a6dc9a6b48db802f"); 
       const account = new Account(client);
       const database = new Databases(client);
