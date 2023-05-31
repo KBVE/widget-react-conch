@@ -1,7 +1,9 @@
 //?       App.js
 //*       [IMPORT]
 import React, { useEffect, useState } from "react";
-import Conch from "./Conch";
+import Conch from "./Conch.js";
+import {API} from "./API.js";
+
 
 function Skeleton() {
   return (
@@ -18,30 +20,40 @@ function Skeleton() {
   );
 }
 
+const getUser = async () => {
+  const response = await API.query({
+    query: `query {
+          accountGet {
+              _id
+              name
+              emailVerification
+              email
+          }
+      }`,
+  });
+  return response.data.accountGet;
+};
 
 function App({ kbve }) {
 
-  const _limit = kbve.getAttribute("data-limit");
-  const _dataJSON = kbve.getAttribute("data-json");
+  //const _limit = kbve.getAttribute("data-limit");
+  //const _dataJSON = kbve.getAttribute("data-json");
 
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch(`https://kbve.com/${_dataJSON}/${_dataJSON}.json`)
-      .then((response) => response.json())
-      .then((data) => {
-        setLoading(false);
-        //setData(data.slice(0, _limit));
-      })
-      .catch((e) => {
-        console.log(e);
-        setLoading(false);
-        setError("error fetching from KBVE");
-      });
-  }, [_dataJSON, _limit]);
+    const fetchUser = async () => {
+      const userDetails = await getUser();
+      setUser(userDetails);
+      console.log(userDetails);
+      setLoading(false);
+    };
+    fetchUser();
+  }, []);
 
 
 
@@ -49,6 +61,7 @@ function App({ kbve }) {
     <>
       {loading && <Skeleton />}
       {!loading && <Conch />}
+     
     </>
   );
 }

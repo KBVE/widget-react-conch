@@ -4,8 +4,8 @@ import useSound from "use-sound";
 
 
 const Conch = ({ conchMsg }) => {
-  const [playYes] = useSound("https://kbve.com/assets/audio/yes.ogg"); // useSound("https://kbve.com/assets/audio/yes.ogg");
-  const [playNo] = useSound("https://kbve.com/assets/audio/no.ogg"); // useSound("https://kbve.com/assets/audio/no.ogg");
+  const [playYes] = useSound("https://conch.kbve.com/yes.ogg"); // useSound("https://kbve.com/assets/audio/yes.ogg");
+  const [playNo] = useSound("https://conch.kbve.com/no.ogg"); // useSound("https://kbve.com/assets/audio/no.ogg");
   
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -13,11 +13,11 @@ const Conch = ({ conchMsg }) => {
 
   function _ask(){
       let magic = getRandomInt(2);
-      if(magic == 1)
+      if(magic === 1)
       {
       playYes();
       }
-      if(magic == 0)
+      if(magic === 0)
       {
         playNo();
       }
@@ -41,13 +41,13 @@ const Conch = ({ conchMsg }) => {
                 className="text-sm font-semibold">
                 Shadow Conch of Darkness
               </a>
-              <span className="text-xs text-gray-400">4 hours ago</span>
+              <span className="text-xs text-gray-400">v0.1.0</span>
             </div>
           </div>
           <div
             className="flex flex-wrap justify-center items-center bg-fit bg-center bg-cover overflow-auto"
             style={{
-              backgroundImage: `url("https://kbve.com/assets/img/bg/bikini_bottom_bg.jpg")`,
+              backgroundImage: `url("https://conch.kbve.com/bikini_bottom_bg.jpg")`,
             }}>
             <div className="flex flex-col items-center w-full">
               <div className="flex flex-row justify-center">
