@@ -1,9 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 // import * as ReactDOM from 'react-dom';
 import useSound from "use-sound";
+import { user$, funky$ } from "./lib/API.js";
+import { useStore } from '@nanostores/react';
 
 
-const Conch = ({ conchMsg }) => {
+const Conch = () => {
+
+
+  const $user = useStore(user$);
+  const $funky = useStore(funky$);
+
   const [playYes] = useSound("https://conch.kbve.com/yes.ogg"); // useSound("https://kbve.com/assets/audio/yes.ogg");
   const [playNo] = useSound("https://conch.kbve.com/no.ogg"); // useSound("https://kbve.com/assets/audio/no.ogg");
   
@@ -15,6 +22,7 @@ const Conch = ({ conchMsg }) => {
       let magic = getRandomInt(2);
       if(magic === 1)
       {
+      
       playYes();
       }
       if(magic === 0)
@@ -41,7 +49,7 @@ const Conch = ({ conchMsg }) => {
                 className="text-sm font-semibold">
                 Shadow Conch of Darkness
               </a>
-              <span className="text-xs text-gray-400">v0.1.0</span>
+              <span className="text-xs text-gray-400">v0.1.0 - Welcome {$user?.name || 'Guest'} || UserID: {$user?.$id || '0'} </span>
             </div>
           </div>
           <div
@@ -58,6 +66,9 @@ const Conch = ({ conchMsg }) => {
                   onClick={_ask}
                 />
               </div>
+              <div>
+                    <span className="flex flex-col text-4xl font-semibold">   </span>
+              </div>
               <div className="flex flex-col w-full">
                 <span
                   className="text-3xl font-semibold text-center gradient-text py-2"
@@ -71,6 +82,11 @@ const Conch = ({ conchMsg }) => {
               </div>
             </div>
           </div>
+
+          <div>
+		      <h2 className="mb-1 text-xl font-semibold">Many years ago, in a dark universe within the shadow realm...</h2>
+		      <p className="text-sm dark:text-gray-400">There was a magical but dangerous shell. Shall you use it for personal power? Help society? Or something far more evil.</p>
+	        </div>
           <div className="flex flex-wrap justify-between">
             <div className="space-x-2">
               <button
