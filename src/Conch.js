@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import * as ReactDOM from 'react-dom';
 import useSound from "use-sound";
 import { user$, funky$ } from "./lib/API.js";
