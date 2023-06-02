@@ -9,35 +9,37 @@
     }
   },
   "dependencies": {
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@mui/icons-material": "^5.11.0",
-    "@mui/lab": "^5.0.0-alpha.114",
-    "@mui/material": "^5.11.3",
-    "@mui/styles": "^5.11.2",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/lab": "^5.0.0-alpha.132",
+    "@mui/material": "^5.13.3",
+    "@mui/styles": "^5.13.2",
     "@nanostores/persistent": "^0.9.0",
     "@nanostores/react": "^0.7.1",
     "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
     "appwrite": "^11.0.0",
     "nanostores": "^0.9.1",
-    "preact": "^10.11.3",
+    "preact": "^10.15.1",
     "preact-compat": "^3.19.0",
     "process": "^0.11.10",
     "react": "^18.2.0",
     "react-appwrite": "^0.4.2",
     "react-dom": "^18.2.0",
     "react-responsive-carousel": "^3.2.23",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
+    "react-simple-typewriter": "^5.0.1",
     "typewriter-effect": "^2.20.1",
     "use-sound": "^4.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^3.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "kbve": "parcel build src/index.js --no-source-maps --experimental-scope-hoisting --target browser -d docs",
+    "up": "yarn yarn-upgrade-all",
+    "kbve": "parcel build src/index.js --no-source-maps --experimental-scope-hoisting -d docs",
     "beta": "parcel build src/index.js --no-source-maps --experimental-scope-hoisting --target browser --bundle-node-modules -d docs --detailed-report",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -50,12 +52,15 @@
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "devDependencies": {
-    "parcel": "^2.8.2",
+    "parcel": "^2.9.1",
     "parcel-bundler": "^1.12.5"
   },
   "alias": {
     "process": "process/browser.js",
     "buffer": "buffer",
     "assert": "assert"
+  },
+  "@parcel/resolver-default": {
+    "packageExports": true
   }
 }
