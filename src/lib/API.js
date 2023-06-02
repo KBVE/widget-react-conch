@@ -1,5 +1,5 @@
 import { Account, Client, Functions } from "appwrite";
-import { atom, task, onAction } from "nanostores";
+import { atom, task } from "nanostores";
 import { persistentAtom } from "@nanostores/persistent";
 import Util from "./Util";
 //*         [DATA]
@@ -31,27 +31,6 @@ session.subscribe(async (session) => {
   }
 });
 
-onAction(user$, ({ id, actionName, onError, onEnd }) => {
-  console.log(`Action ${actionName} was started`);
-  onError(({ error }) => {
-    console.error(`Action ${actionName} was failed`, error);
-  });
-  onEnd(() => {
-    console.log(`Action ${actionName} was stopped`);
-  });
-});
-
-
-onAction(funky$, ({ id, actionName, onError, onEnd }) => {
-  console.log(`Action ${actionName} was started`);
-  onError(({ error }) => {
-    console.error(`Action ${actionName} was failed`, error);
-  });
-  onEnd(() => {
-    console.log(`Action ${actionName} was stopped`);
-  });
-});
-
 export const account = async () => {
   try {
     return _aw.get();
@@ -60,7 +39,7 @@ export const account = async () => {
   }
 };
 
-export const funky = async (functionId) => {
+export const funky = async (functionId, message) => {
   
   task(async () => {
     console.log(`Started Task ${functionId}`);

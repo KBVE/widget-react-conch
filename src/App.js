@@ -3,9 +3,6 @@
 import React, { useEffect, useState } from "react";
 import Conch from "./Conch.js";
 import Util from "./lib/Util.js";
-import { user$, funky } from "./lib/API.js";
-import { useStore } from '@nanostores/react';
-
 
 const Skeleton = () => {
   return (
@@ -30,7 +27,6 @@ function App({ kbve }) {
 
   const [loading, setLoading] = useState(true);
 
-  //const $user = useStore(user$);
 
   useEffect(() => {
     const fetchUser = async () => {
