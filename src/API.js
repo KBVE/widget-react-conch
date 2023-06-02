@@ -38,10 +38,25 @@ export const account = async () => {
   }
 };
 
-export const funky = async (functionId, message) => {
-  
+export const exe = async (functionId, data) => {
+  const promise = functions.createExecution(functionId, data);
+  promise.then(
+    function (response) {
+      console.log(response.response);
+      return response.response;
+    },
+    function (error) {
+      console.log(error);
+    }
+  );
+}
+
+export const funky = async (functionId, data) => {
   task(async () => {
     console.log(`Started Task ${functionId}`);
+    console.log(`Data ${data}`);
+    funky$.set(await exe(functionId, data));
     console.log(`Task Ended`);
+    
   });
 };

@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 // import * as ReactDOM from 'react-dom';
 import useSound from "use-sound";
-import { user$, funky$ } from "./API.js";
+import { user$, funky$, funky, exe } from "./API.js";
 import { useStore } from '@nanostores/react';
-
+// Function is 6479653d74613fd2766e
 
 const Conch = () => {
-
-
   const $user = useStore(user$);
-  const $funky = useStore(funky$);
+  //const $funky = useStore(funky$);
+  const ref = useRef(null);
+
 
   const [playYes] = useSound("https://conch.kbve.com/yes.ogg"); // useSound("https://kbve.com/assets/audio/yes.ogg");
   const [playNo] = useSound("https://conch.kbve.com/no.ogg"); // useSound("https://kbve.com/assets/audio/no.ogg");
@@ -18,8 +18,17 @@ const Conch = () => {
     return Math.floor(Math.random() * max);
   }
 
-  function _ask(){
+
+  async function _ask(){
       let magic = getRandomInt(2);
+      var obj = JSON.stringify({
+        "question" : ref.current.value
+      });
+      const gpt = JSON.stringify(await exe(`6479653d74613fd2766e`, obj));
+      if(gpt)
+      {
+      console.log(`GPT Response ${gpt}`);
+      }
       if(magic === 1)
       {
       
@@ -67,13 +76,14 @@ const Conch = () => {
                 />
               </div>
               <div>
-                    <span className="flex flex-col text-4xl font-semibold">   </span>
+                    <span className="flex flex-col text-4xl font-semibold"> </span>
               </div>
               <div className="flex flex-col w-full">
                 <span
                   className="text-3xl font-semibold text-center gradient-text py-2"
-                  id="answerElement">
+                 >
                   <textarea
+                    ref={ref}
                     rows="3"
                     placeholder="Type your magic message here and click the shell below..."
                     className="p-4 rounded-md resize text-gray-600 w-1/2"
