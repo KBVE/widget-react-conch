@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import useSound from "use-sound";
 import { user$, funky$, api$, whisky } from "./API.js";
 import { useStore } from "@nanostores/react";
-import Typewriter from "typewriter-effect";
+import Typewriter from 'typewriter-effect/dist/core';
 
 function getStringBetween(str, start, end) {
   const result = str.match(new RegExp(start + "(.*)" + end));
