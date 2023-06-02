@@ -30,6 +30,7 @@
     "react-dom": "^18.2.0",
     "react-responsive-carousel": "^3.2.23",
     "react-scripts": "5.0.1",
+    "typewriter-effect": "^2.20.1",
     "use-sound": "^4.0.1",
     "web-vitals": "^2.1.4"
   },

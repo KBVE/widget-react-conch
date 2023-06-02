@@ -1,6 +1,5 @@
 import { Account, Client, Functions } from "appwrite";
 import { atom, task } from "nanostores";
-import { persistentAtom } from "@nanostores/persistent";
 //*         [DATA]
 export const _client = new Client()
   .setEndpoint("https://ap.kbve.com/v1")
@@ -10,8 +9,8 @@ export const _aw = new Account(_client);
 export const functions = new Functions(_client);
 export const session = atom(undefined);
 export const api$ = atom(false);
-export const user$ = persistentAtom(undefined);
-export const funky$ = persistentAtom(undefined);
+export const user$ = atom(undefined);
+export const funky$ = atom(undefined);
 
 //?         [FUNCTION]
 

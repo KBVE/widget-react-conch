@@ -3,7 +3,13 @@ import React, { useEffect, useState, useRef } from "react";
 import useSound from "use-sound";
 import { user$, funky$, api$, whisky } from "./API.js";
 import { useStore } from "@nanostores/react";
-// Function is 6479653d74613fd2766e
+import Typewriter from "typewriter-effect";
+
+function getStringBetween(str, start, end) {
+  const result = str.match(new RegExp(start + "(.*)" + end));
+
+  return result[1];
+}
 
 const Conch = () => {
   const $user = useStore(user$);
@@ -14,6 +20,8 @@ const Conch = () => {
     "hover:animate-pulse hover:scale-110 hover:cursor-grab"
   );
 
+  const [gpt, setGPT] = useState("Type a question below loser!");
+
   const ref = useRef(null);
 
   useEffect(() => {
@@ -22,7 +30,17 @@ const Conch = () => {
     } else {
       setCSS("hover:animate-pulse hover:scale-110 hover:cursor-grab");
     }
-  }, [$api]);
+    if ($funky) {
+      console.log("Found Funky");
+      setGPT(
+        getStringBetween($funky.response, '{"content":"', '","role"').replace(
+          /\n/g,
+          "<br />"
+        )
+      );
+      //console.log(gpt);
+    }
+  }, [$api, $funky]);
 
   const [playYes] = useSound("https://conch.kbve.com/yes.ogg"); // useSound("https://kbve.com/assets/audio/yes.ogg");
   const [playNo] = useSound("https://conch.kbve.com/no.ogg"); // useSound("https://kbve.com/assets/audio/no.ogg");
@@ -38,21 +56,47 @@ const Conch = () => {
       question: ref.current.value,
     });
     await whisky(`6479653d74613fd2766e`, obj);
-    console.log($funky.toString());
     if (magic === 1) {
+      setGPT("Yes");
       playYes();
+    
     }
     if (magic === 0) {
+      setGPT("No");
       playNo();
+      
     }
+  }
+
+  function _renderAPI() {
+    return (
+      <>
+        <div className="flex flex-row justify-center">
+          <img
+            alt=""
+            src="https://media.tenor.com/bpTjf2rCGJQAAAAC/sponge-bob-patrick-star.gif"
+            className="object-cover w-100 h-100 rounded-full shadow bg-gray-500"
+          />
+        </div>
+      </>
+    );
   }
 
   function _renderGPT() {
     return (
       <>
         <div className="flex flex-col items-center w-full">
-          <div className="flex flex-row justify-center">
-            <span>{$api}</span>
+          <div className="flex flex-row justify-center bg-gray-900 p-4 rounded-xl">
+            <span>
+              <Typewriter
+                options={{
+                  strings: [gpt],
+                  autoStart: true,
+                  loop: false,
+                  pauseFor: 2000,
+                }}
+              />
+            </span>
           </div>
         </div>
       </>
@@ -120,7 +164,7 @@ const Conch = () => {
               </div>
               <div></div>
               <div className="flex flex-col w-full">
-                {$api && _renderGPT()}
+                {_renderGPT()}
                 <span className="text-3xl font-semibold text-center gradient-text py-2">
                   <textarea
                     ref={ref}
@@ -142,8 +186,8 @@ const Conch = () => {
               There was a magical but dangerous shell. Shall you use it for
               personal power? Help society? Or something far more evil.
             </p>
-            <p className="text-sm">{$funky?.response || ""}</p>
-            <p className="text-sm"> API Call: {$api?.toString()}</p>
+            
+            {$api && _renderAPI()}
             <p className="text-sm"></p>
           </div>
           <div className="flex flex-wrap justify-between">
