@@ -9,7 +9,7 @@ export const _client = new Client()
 export const _aw = new Account(_client);
 export const functions = new Functions(_client);
 export const session = atom(undefined);
-export const _funky = atom(undefined);
+export const api$ = atom(false);
 export const user$ = persistentAtom(undefined);
 export const funky$ = persistentAtom(undefined);
 
@@ -39,24 +39,24 @@ export const account = async () => {
 };
 
 export const exe = async (functionId, data) => {
-  const promise = functions.createExecution(functionId, data);
-  promise.then(
-    function (response) {
-      console.log(response.response);
-      return response.response;
-    },
-    function (error) {
-      console.log(error);
-    }
-  );
+  try {
+    return functions.createExecution(functionId, data);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-export const funky = async (functionId, data) => {
+export const whisky = async (functionId, data) => {
+  if(api$.get()){ return }
   task(async () => {
+    api$.set(true);
+    console.log(`Task API -> ${api$.get()}`);
     console.log(`Started Task ${functionId}`);
     console.log(`Data ${data}`);
     funky$.set(await exe(functionId, data));
+    api$.set(false);
+    console.log(`Task API -> ${api$.get()}`);
     console.log(`Task Ended`);
-    
+
   });
 };
