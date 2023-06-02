@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import * as ReactDOM from 'react-dom';
 import useSound from "use-sound";
-import { user$, funky$ } from "./lib/API.js";
+import { user$, funky$ } from "./API.js";
 import { useStore } from '@nanostores/react';
 
 

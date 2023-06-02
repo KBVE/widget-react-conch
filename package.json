@@ -36,7 +36,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "kbve": "parcel build src/index.js --no-source-maps --experimental-scope-hoisting -d docs",
+    "kbve": "parcel build src/index.js --no-source-maps --experimental-scope-hoisting --target browser -d docs",
     "beta": "parcel build src/index.js --no-source-maps --experimental-scope-hoisting --target browser --bundle-node-modules -d docs --detailed-report",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

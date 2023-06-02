@@ -1,7 +1,6 @@
 import { Account, Client, Functions } from "appwrite";
 import { atom, task } from "nanostores";
 import { persistentAtom } from "@nanostores/persistent";
-import Util from "./Util";
 //*         [DATA]
 export const _client = new Client()
   .setEndpoint("https://ap.kbve.com/v1")
@@ -43,7 +42,6 @@ export const funky = async (functionId, message) => {
   
   task(async () => {
     console.log(`Started Task ${functionId}`);
-    await Util.sleep(1000);
     console.log(`Task Ended`);
   });
 };
