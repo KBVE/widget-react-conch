@@ -3,7 +3,9 @@ import React, { useEffect, useState, useRef } from "react";
 import useSound from "use-sound";
 import { user$, funky$, api$, whisky } from "./API.js";
 import { useStore } from "@nanostores/react";
-import Typewriter from 'typewriter-effect/dist/core';
+//import Typewriter from 'typewriter-effect/dist/core';
+import { useTypewriter } from 'react-simple-typewriter'
+
 
 function getStringBetween(str, start, end) {
   const result = str.match(new RegExp(start + "(.*)" + end));
@@ -21,6 +23,13 @@ const Conch = () => {
   );
 
   const [gpt, setGPT] = useState("Type a question below loser!");
+
+
+  const [typewriter, helper] = useTypewriter({
+    words: ['', gpt],
+    loop: 0,
+    
+  })
 
   const ref = useRef(null);
 
@@ -88,14 +97,7 @@ const Conch = () => {
         <div className="flex flex-col items-center w-full">
           <div className="flex flex-row justify-center bg-gray-900 p-4 rounded-xl">
             <span>
-              <Typewriter
-                options={{
-                  strings: [gpt],
-                  autoStart: true,
-                  loop: false,
-                  pauseFor: 2000,
-                }}
-              />
+            ඞ {typewriter}
             </span>
           </div>
         </div>
